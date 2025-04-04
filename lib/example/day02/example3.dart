@@ -97,14 +97,15 @@ switch(obj){
     print('$a,$b');
 }
 
-
-switch (obj){
-  case 1: print('one'); //정수가 1인경우
-
-  case >= first && <= last: print('in range');
-
-  case (var a,var b):print('a=$a,b=$b');
-}
+//
+// switch (obj){
+//   case 1: print('one'); //정수가 1인경우
+//
+//   case >= first && <= last: print('in range');
+//
+//   case (var a,var b):print('a=$a,b=$b');
+//   default:
+// }
 
 
 }// m end
