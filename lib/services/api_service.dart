@@ -5,7 +5,7 @@ import '../models/task_dto.dart';
 import '../models/reply_dto.dart';
 
 class ApiService {
-  final String baseUrl = 'http://10.0.2.2:8081  /task/book'; // 에뮬레이터에서 localhost 접근용
+  final String baseUrl = 'http://192.168.40.26:8080/task/book'; // 에뮬레이터에서 localhost 접근용
 
   // 1. 책 추천 등록
   Future<TaskDto> saveBook(TaskDto taskDto) async {
