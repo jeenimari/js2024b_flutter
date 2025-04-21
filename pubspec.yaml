@@ -1,5 +1,5 @@
 name: js2024b_app
-description: "A new Flutter project."
+description: "책 추천 앱"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -31,6 +31,10 @@ dependencies:
   dio: ^5.8.0+1 #비동기 통신 라이브러리 추가
   flutter:
     sdk: flutter
+  http: ^1.1.0
+  provider: ^6.0.5
+  intl: ^0.18.1
+
 
 
   # The following adds the Cupertino Icons font to your application.
