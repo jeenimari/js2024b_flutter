@@ -1,5 +1,7 @@
 // signup.dart : 회원가입 페이지
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:tj2024b_app/app/member/login.dart';
 class Signup extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -16,11 +18,33 @@ class _SignupState extends State<Signup>{
   void onSignup() async{
     // 1.자바에게 보낼 데이터 준비.
     final sendData = {
-      'email' : emailControl.text, // 입력 컨트롤러에 입력된 값 가져오기
-      'pwd' : pwdControl.text,
-      'name' : nameControl.text,
+      'memail' : emailControl.text, // 입력 컨트롤러에 입력된 값 가져오기
+      'mpwd' : pwdControl.text,
+      'mname' : nameControl.text,
     }; print( sendData ); // 확인
 
+    //Rest API 통신 간의 로딩 화면 표시 , showDialog() : 팝업창 띄우기 위한 위젯
+    showDialog(
+        context: context,
+        builder: (context)=>Center(child: CircularProgressIndicator(),),
+        barrierDismissible: false, // 팝업창(로딩홤녀)외 바깥 클릭 차단
+    );
+
+    // 2.
+    try {
+      Dio dio = Dio();
+      final response = await dio.post( "http://localhost:8080/member/signup", data: sendData);
+      final data = response.data;
+
+      Navigator.pop(context); //가장 앞(가장 최근에 열린)에 있는 위젯 닫기(showDialog():팝업창)
+
+      if (data) {
+        print("회원가입 성공");
+        // * 페이지 전환
+        Navigator.pushReplacement(context,  MaterialPageRoute(builder:  (context)=>Login() ) );
+      }
+      else {   print("회원가입 실패");  }
+    }catch(e){print(e);}
   } // f end
 
   @override
@@ -30,7 +54,7 @@ class _SignupState extends State<Signup>{
           padding : EdgeInsets.all( 30 ), // EdgeInsets.all() : 상하좌우 모두 적용되는 안쪽 여백
           margin : EdgeInsets.all( 30 ) , // EdgeInsets.all() : 상하좌우 모두 적용되는 바깥 여백
           child: Column( // 세로배치 위젯
-            mainAxisAlignment: MainAxisAlignment.center, //가로 가운데 정렬
+            mainAxisAlignment: MainAxisAlignment.center, // 주 축으로 가운데 정렬( Column 이면 세로 , Row이면 가로 )
             children: [ // 하위 위젯
               TextField(
                 controller: emailControl,
@@ -49,7 +73,13 @@ class _SignupState extends State<Signup>{
               ), // 입력 위젯 , 닉네임
               SizedBox( height: 20, ),
               ElevatedButton( onPressed: onSignup , child: Text("회원가입") ),
-              TextButton( onPressed: ()=>{}, child: Text("이미 가입된 사용자 이면 _로그인") )
+              SizedBox( height: 20, ),
+              TextButton( onPressed: ()=>{
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context)=> Login() )
+                )
+              }, child: Text("이미 가입된 사용자 이면 _로그인") )
             ],
           ) ,
         )

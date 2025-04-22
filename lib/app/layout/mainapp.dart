@@ -1,6 +1,8 @@
 // * mainapp.dart : 레이아웃 구성 하는 파일
 import 'package:flutter/material.dart';
-import 'package:js2024b_app/app/layout/member/signup.dart';
+
+
+import 'package:tj2024b_app/app/member/signup.dart';
 
 class MainApp extends StatefulWidget{
   @override
@@ -65,6 +67,7 @@ class _MainAppState extends State<MainApp>{
             BottomNavigationBarItem(icon: Icon(Icons.forum) , label: '게시물1' ),
             BottomNavigationBarItem(icon: Icon(Icons.forum) , label: "게시물2"),
             BottomNavigationBarItem(icon: Icon(Icons.person) , label: "내정보(회원가입)"),
+            BottomNavigationBarItem(icon: Icon(Icons.person) , label: "내정보"),
           ],
         ) // 바텀 end
 
