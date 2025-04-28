@@ -1,7 +1,9 @@
 // signup.dart : 회원가입 페이지
+import 'package:JS2024b_app/app/member/login.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:tj2024b_app/app/member/login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 class Signup extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -40,6 +42,16 @@ class _SignupState extends State<Signup>{
 
       if (data) {
         print("회원가입 성공");
+        Fluttertoast.showToast(
+            msg: "회원가입 성공했습니다.", //출력할 내용
+            toastLength: Toast.LENGTH_LONG, // 메세지 유지 시간
+            gravity: ToastGravity.CENTER, //메세지 위치 : 앱 적용
+            timeInSecForIosWeb: 3, // 자세한 유지시간 초단위로(sec)
+            backgroundColor:Colors.deepPurpleAccent,
+            textColor: Colors.white, //글자 색상
+            fontSize: 16, //글자크기
+        );
+
         // * 페이지 전환
         Navigator.pushReplacement(context,  MaterialPageRoute(builder:  (context)=>Login() ) );
       }

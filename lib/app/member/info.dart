@@ -1,11 +1,12 @@
 
 
 
+import 'package:JS2024b_app/app/layout/mainapp.dart';
+import 'package:JS2024b_app/app/member/login.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tj2024b_app/app/layout/mainapp.dart';
-import 'package:tj2024b_app/app/member/login.dart';
+
 
 class Info extends StatefulWidget{
   @override
